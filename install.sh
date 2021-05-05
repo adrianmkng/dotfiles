@@ -1,18 +1,29 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 set -euo pipefail
 
-INSTALL_DIR="${INSTALL_DIR:-${HOME}/.dotfiles}"
+DOTFILES_HOME="${DOTFILES_HOME:-${HOME}/.dotfiles}"
+VUNDLE_HOME="${HOME}/.vim/bundle/Vundle.vim"
 
 install_dotfiles() {
-  if [[ -a "${INSTALL_DIR}" ]] 
+  if [ ! -d "${DOTFILES_HOME}" ] 
   then
-    echo "${INSTALL_DIR} already exists."
-    return 0
+    print -P "%F{green} Installing dotfiles to ${DOTFILES_HOME}%f"
+    git clone git@github.com:adrianmkng/dotfiles.git ${DOTFILES_HOME}
   else 
-    echo "Installing dotfiles to ${INSTALL_DIR}"
-    git clone git@github.com:adrianmkng/dotfiles.git ${INSTALL_DIR}
+    print -P "%F{magenta}${DOTFILES_HOME} already exists.%f"
+  fi
+}
+
+install_vundle() {
+  if [ ! -d "${VUNDLE_HOME}" ]
+  then
+    print -P "%F{green}Installing Vundle%f"
+    git clone https://github.com/VundleVim/Vundle.vim.git ${VUNDLE_HOME}
+  else
+    print -P "%F{magenta}Vundle already installed%f"
   fi
 }
 
 install_dotfiles
+install_vundle
