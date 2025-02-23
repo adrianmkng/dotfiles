@@ -2,7 +2,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 
-plugins=(asdf git aws kubectl)
+plugins=(git aws kubectl)
 
 source $ZSH/oh-my-zsh.sh
 

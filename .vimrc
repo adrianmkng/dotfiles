@@ -1,16 +1,16 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
+colorscheme catppuccin_mocha
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin()
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
-call vundle#end()            " required
+call plug#end()            " required
 filetype plugin indent on    " required
 
 set number          " Show line nubmers
@@ -20,8 +20,7 @@ set shiftwidth=2    " And again, related.
 set expandtab       " Use spaces instead of tabs
 set lazyredraw      " Speedy up the terminal
 set modeline
-
-syntax enable
+set termguicolors
 
 " ===================
 " NerdTree
@@ -29,4 +28,10 @@ syntax enable
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" ===================
+" Airline
+" ===================
+
+let g:airline#extensions#tabline#enabled = 1
 

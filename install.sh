@@ -3,7 +3,6 @@
 set -euo pipefail
 
 DOTFILES_HOME="${DOTFILES_HOME:-${HOME}/.dotfiles}"
-VUNDLE_HOME="${HOME}/.vim/bundle/Vundle.vim"
 
 install_dotfiles() {
   if [ ! -d "${DOTFILES_HOME}" ] 
@@ -18,17 +17,9 @@ install_dotfiles() {
   ln -s ${DOTFILES_HOME}/.vimrc  ${HOME}/.vimrc
 }
 
-install_vundle() {
-  if [ ! -d "${VUNDLE_HOME}" ]
-  then
-    #print -P "%F{green}Installing Vundle%f"
-    echo "Installing Vundle"
-    git clone https://github.com/VundleVim/Vundle.vim.git ${VUNDLE_HOME}
-  else
-    #print -P "%F{magenta}Vundle already installed%f"
-    echo "Vundle already installed"
-  fi
+install_vimplug() {
+  curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 }
 
 install_dotfiles
-install_vundle
+install_vimplug

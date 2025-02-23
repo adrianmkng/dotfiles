@@ -7,4 +7,4 @@
 
 ## Post install
 
-To load the Vundle plugins, open vi and enter `:PluginInstall`
+To load the vim plugins, open vi and enter `:PlugInstall`
